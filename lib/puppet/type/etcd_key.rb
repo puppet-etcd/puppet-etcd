@@ -1,6 +1,6 @@
 Puppet::Type.newtype(:etcd_key) do
   @doc = <<-EOT
-    doc 
+    doc
   EOT
 
   autorequire(:service) do

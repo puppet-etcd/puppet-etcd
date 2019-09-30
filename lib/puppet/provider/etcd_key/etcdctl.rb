@@ -2,13 +2,13 @@ Puppet::Type.type(:etcd_key).provide(:etcdctl) do
   commands :etcdctl => '/usr/bin/etcdctl'
 
   def arguments
-    args = ['--peers', @resource[:peers]]
+    args = ['--endpoints', @resource[:peers]]
     if @resource[:cert_file] && @resource[:key_file]
-      args << '--cert-file' << @resource[:cert_file] << '--key-file' << @resource[:key_file]
+      args << '--cert' << @resource[:cert_file] << '--key' << @resource[:key_file]
     end
 
     if @resource[:ca_file]
-      args << '--ca-file' << @resource[:ca_file]
+      args << '--cacert' << @resource[:ca_file]
     end
 
     if @resource[:username] and @resource[:password]
@@ -27,15 +27,17 @@ Puppet::Type.type(:etcd_key).provide(:etcdctl) do
   end
 
   def create
+    # TODO: parametrize etcd version to keep compatibility with versions prior
+    # to 3.4.1
     args = arguments
-    args << 'set'  << @resource[:name] << @resource[:value]
+    args << 'put'  << @resource[:name] << @resource[:value]
     debug "[etcd create]: etcdctl #{args}\n"
     etcdctl(args)
   end
 
   def destroy
     args = arguments
-    args << 'rm'  << @resource[:name]
+    args << 'del'  << @resource[:name]
     debug "[etcd rm]: etcdctl #{args}\n"
     etcdctl(args)
   end
@@ -50,7 +52,7 @@ Puppet::Type.type(:etcd_key).provide(:etcdctl) do
   def value=(val)
     args = arguments
     debug "[etcd set]: etcdctl #{args}\n"
-    args << 'set'  << @resource[:name] << val
+    args << 'put'  << @resource[:name] << val
     etcdctl(args)
   end
 end
