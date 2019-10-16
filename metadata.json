@@ -1,12 +1,12 @@
 {
-	"name": "cristifalcas-etcd",
-	"version": "1.12.2",
-	"author": "Cristian Falcas",
+	"name": "puppet-etcd",
+	"version": "1.12.3",
+	"author": "Cristian Falcas and Community",
 	"summary": "Installs and configures etcd",
 	"license": "Apache-2.0",
-	"source": "git@github.com:cristifalcas/puppet-etcd.git",
-	"project_page": "https://github.com/cristifalcas/puppet-etcd",
-	"issues_url": "https://github.com/cristifalcas/puppet-etcd/issues",
+	"source": "git@github.com:puppet-etcd/puppet-etcd.git",
+	"project_page": "https://github.com/puppet-etcd/puppet-etcd",
+	"issues_url": "https://github.com/puppet-etcd/puppet-etcd/issues",
 	"requirements": [{
 			"name": "puppet",
 			"version_requirement": ">=3.4.0 <5.0.0"
@@ -21,7 +21,8 @@
 		},{
 			"operatingsystem": "CentOS",
 			"operatingsystemrelease": [ "6",
-				"7"
+				"7",
+				"8"
 			]
 		},{
 			"operatingsystem": "OracleLinux",
@@ -37,7 +38,11 @@
 			"operatingsystem": "Fedora",
 			"operatingsystemrelease": [ "24",
 				"25",
-				"26"
+				"26",
+				"27",
+				"28",
+				"29",
+				"30"
 			]
 		},{
 			"operatingsystem": "Debian",
